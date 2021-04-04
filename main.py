@@ -17,7 +17,6 @@ location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))
 # gets results from json file
 with open(os.path.join(location, 'watchlist.json'), 'r') as f:
     analyse = json.load(f)
-    print(analyse)
 #getting your api token from the .env file
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
