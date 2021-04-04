@@ -1,5 +1,5 @@
 # octo-stock
-A simple, customisable stock manager written in Python using the Polygon API.
+A simple, customisable stocks manager written in Python using the Polygon API.
 
 
 ## Basic Documentation
