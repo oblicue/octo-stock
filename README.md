@@ -16,4 +16,7 @@ You can use the arrow keys to go up/down, and enter to select an option.
 The names are pretty descriptive, e.g showwatchlist will show all stocks on your watch list.
 Nothing is permanent and you can always revert by opening watchlist.json or using the (soon to be added!) removefromwatchlist command.
 
-Just have a toy around and see what you can do!
+Enjoy!
+
+## Screenshots
+![Screenshot of the command line interface](/screenshots/1.png)
