@@ -11,12 +11,12 @@ from PyInquirer import *
 # -- remove from watchlist cmd
 # -- think of stuff to do
 
-
 location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))) # dont understand this but it works 🤷
 
 # gets results from json file
 with open(os.path.join(location, 'watchlist.json'), 'r') as f:
-    analyse = json.load(f)
+    analyse = json.loads(f.read())
+
 #getting your api token from the .env file
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
@@ -65,6 +65,16 @@ def add_to_watchlist(item):
     with open(os.path.join(location, 'watchlist.json'), 'w') as f:
         analyse.append(item)
         json.dump(analyse, f, ensure_ascii=False, indent=4)
+def remove_from_watchlist(item):
+    with open(os.path.join(location, 'watchlist.json'), 'r', encoding='utf-8') as f:
+        toiletdance = json.load(f) # load
+    if item == 'everything':
+        toiletdance = []
+    else:
+        toiletdance.remove(item) # actually do something
+    with open(os.path.join(location, 'watchlist.json'), 'w', encoding='utf-8') as f:
+            json.dump(toiletdance, f, ensure_ascii=False, indent=4) # save
+
 def run():
     #show_analyse_list() # hardcoded in for easy testing
     #add_to_watchlist('SBUX') # hardcoded in for easy testing
@@ -89,6 +99,9 @@ def run():
                 },
                 {
                     'name': 'addtowatchlist'
+                },
+                {
+                    'name': 'removefromwatchlist'
                 }
             ],
             'validate': lambda answer: 'You need to pick an action.' \
@@ -111,6 +124,18 @@ def run():
         answer = prompt(question, style=style)
         add_to_watchlist(answer['whattoadd'])
         print(f"Done! Added {answer['whattoadd']} to your watchlist!")
+    elif answers['Actions'] == 'removefromwatchlist':
+        questionpoo = [
+            {
+                'type': 'input',
+                'name': 'whattoremove',
+                'message': 'What do you want to remove?'
+            }
+        ]
+        time.sleep(0.5)
+        answerwacky = prompt(questionpoo, style=style)
+        remove_from_watchlist(answerwacky['whattoremove'])
+        print(f"Successfully removed {answerwacky['whattoremove']} from your watchlist!")
     question2 = [
         {
             'type': 'list',
