@@ -2,7 +2,7 @@
 A simple, customisable stock manager written in Python using the Polygon API.
 
 
-# Basic Documentation
+## Basic Documentation
 So simple it doesn't need much documentation, here it is anyway:
 
 ### Starting Out + Installation
