@@ -20,3 +20,4 @@ Enjoy!
 
 ## Screenshots
 ![Screenshot of the command line interface](/screenshots/1.png)
+![Screenshot of adding the starbucks stock to the watchlist](/screenshots/2.png)
