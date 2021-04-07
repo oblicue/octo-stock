@@ -1,5 +1,6 @@
 import threading
 import numpy as np
+from matplotlib import pyplot as plt
 from dotenv import load_dotenv
 import os
 from datetime import datetime, timedelta
@@ -7,7 +8,9 @@ import requests
 import json
 import time
 from PyInquirer import *
+import pandas as pd
 # TO DO
+# -- add graphs using PIL or something
 
 location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))) # dont understand this but it works 🤷
 
@@ -58,6 +61,28 @@ def show_analyse_list():
             ''')
         else:
             print(result)
+
+def display_graph(item): # not yet implemented because i dont understand matplotlib and i dont think there's enough data to create a graph anyway. too bad.
+    r = requests.get(f'https://api.polygon.io/v1/open-close/{item}/{date}?unadjusted=true&apiKey={TOKEN}').json()
+    try:
+        result = {
+            'symbol': r['symbol'],
+            'open': r['open'],
+            'high': r['high'],
+            'low': r['low'],
+            'close': r['close'],
+            'afterhours': r['afterHours'],
+            'date': r['from']
+        }
+    except:
+            print(f"Error! {r}")
+            return
+    dev_y = [result["open"], result["close"]]
+
+    dev_x = [0, 24]
+
+    plt.plot(dev_x, dev_y)
+    plt.show()
 def add_to_watchlist(item):
     print("Remember - the polygon api free version has a 5 requests per minute limit")
     with open(os.path.join(location, 'watchlist.json'), 'w') as f:
@@ -159,3 +184,4 @@ def run():
         quit()
 if __name__ == '__main__':
     run()
+    # display_graph("HD") # debugging
