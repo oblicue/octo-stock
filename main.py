@@ -8,8 +8,6 @@ import json
 import time
 from PyInquirer import *
 # TO DO
-# -- remove from watchlist cmd
-# -- think of stuff to do
 
 location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))) # dont understand this but it works 🤷
 
@@ -22,7 +20,7 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
 #you can also add your own custom date instead of yesterdays date
-date = (datetime.now() - timedelta(1)).strftime("%Y-%d-%m")
+date = (datetime.now() - timedelta(1)).strftime("%Y-%m-%d")
 
 #json or formatted
 formatted = True
